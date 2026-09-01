@@ -21,6 +21,9 @@ export class Server {
         this.app.get('/health', (req,res) => {
             res.json({status: 'healthy'});
         })
+        this.app.get('/health/version', (req,res) => {
+            res.json({status: 'healthy', version: 1});
+        })
     }
 
     start(callback){
