@@ -30,4 +30,4 @@ jobs:
           docker run -d -p 3000:3000 --name test-container devops-training
           sleep 2
           curl --fail http://localhost:3000/health
-          docker stopt test-container
+          docker stop test-container
