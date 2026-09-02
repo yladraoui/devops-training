@@ -27,7 +27,7 @@ jobs:
 
       - name: Verifier que le conteneur demarre
         run: |
-          docker run -d 3000:3000 --name test-container devops-training
+          docker run -d -p 3000:3000 --name test-container devops-training
           sleep 2
           curl --fail http://localhost:3000/health
           docker stopt test-container
