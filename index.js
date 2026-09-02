@@ -1,4 +1,4 @@
-import { Server } from "./server.js";
+import { Server } from "./Server.js";
 
 function main(){
     let server = new Server();

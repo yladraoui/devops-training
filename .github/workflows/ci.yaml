@@ -1,0 +1,33 @@
+name: CI Pipline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le code
+        uses: actions/checkout@v4
+
+      - name: Installer node js
+        uses: actions/setup-node@v4
+        with:
+          node-version:  '20'
+
+      - name: Installer les dependances
+        run: npm install
+
+      - name: Construire l image docker
+        run: docker build -t devops-training .
+
+      - name: Verifier que le conteneur demarre
+        run: |
+          docker run -d 3000:3000 --name test-container devops-training
+          sleep 2
+          curl --fail http://localhost:3000/health
+          docker stopt test-container
